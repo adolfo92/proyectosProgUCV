@@ -98,6 +98,9 @@ while True:
 
 			sys.exit(0)
 
+
+
+
 		if opcion == 1:
 
 			inicio = False
@@ -120,7 +123,7 @@ while True:
 
 					suma = suma + 10
 
-			if suma < 17: #Si la cas tiene menos de 17, agarra carta
+			if suma < 17: #Si la casa tiene menos de 17, agarra carta
 
 				print("\nLa casa pide carta\n")
 
@@ -182,6 +185,12 @@ while True:
 
 			print("La casa suma: ", suma, "\n")
 
+			if suma < 17: #Si la casa tiene menos de 17, agarra carta
+
+				print("\nLa casa pide carta\n")
+
+				cartasCasa.append(cartas.pop(0))
+
 			if suma > 21:
 
 				print("\nPerdio la casa, gana el jugador")
@@ -223,7 +232,7 @@ while True:
 
 					apuestaPlayer = apuestaPlayer*2
 
-					apuestaCasa = apuestaCasa*2
+					apuestaCasa = apuestaPlayer
 
 
 					print("\nApuesta en mesa: ",apuestaPlayer,"\n" ) # Al doblar se te da otra carta
@@ -266,9 +275,13 @@ while True:
 
 		if opcion == 3:
 
+			apuestaCasa = apuestaPlayer
+
 			os.system('clear')
 
 			print("\nEl jugador se planta\n")
+
+			cut = False
 
 			while True:		
 
@@ -289,11 +302,44 @@ while True:
 
 					cartasCasa.append(cartas.pop(0))
 
+				elif casaSuma > 21: #Si la casa tiene menas de 21 pierde
+
+					dinero = dinero + apuestaPlayer + apuestaCasa
+
+					print("\nLa casa pierde\n")
+
+					op = input("\nQuires seguir jugando?  y  /  n\n")
+
+					if op == "y":
+
+						cut = True
+
+						break
+
+					else:
+
+						sys.exit(0)	
+				if cut:
+
+					break
+
 				else:
 
 					print("La casa se planta\n")
 
 					break
+
+					op = input("\nQuires seguir jugando?  y  /  n\n")
+
+					if op == "y":
+
+						break
+
+					else:
+
+						sys.exit(0)		
+
+				
 
 				print("Cartas de la casa:\n", cartasCasa,"\n")
 
@@ -331,7 +377,6 @@ while True:
 				else:
 
 					sys.exit(0)
-
 
 
 
@@ -374,6 +419,21 @@ while True:
 				else:
 					
 					sys.exit(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		# SEPARO LA OPCION 4 PORQUE SE ME ENREDO 
 
 		if opcion == 4:
 
@@ -471,9 +531,13 @@ while True:
 
 								print("\nEl jugador se planta\n")
 
+
+
 								while True:		
 
 									casaSuma = 0
+
+
 
 									for carta in cartasCasa: 
 
@@ -484,11 +548,32 @@ while True:
 
 											casaSuma = casaSuma + 10
 
+
+
 									if casaSuma < 17: #Si la casa tiene menos de 17, agarra carta
 
 										print("\nLa casa pide carta\n")
 
 										cartasCasa.append(cartas.pop(0))
+
+
+
+									if casaSuma > 21: #Si la casa tiene menas de 21 pierde
+
+										dinero = dinero + apuestaPlayer + apuestaCasa
+
+										print("\nLa casa pierde\n")
+
+										op = input("\nQuires seguir jugando?  y  /  n\n")
+
+										if op == "y":
+
+											break
+
+										else:
+
+											sys.exit(0)
+
 
 									else:
 
@@ -604,7 +689,78 @@ while True:
 									else:
 										
 										sys.exit(0)
-									
+
+								elif casaSuma > sumaA and casaSuma ==sumaB:
+
+									print("Empate\n")
+
+									dinero = dinero - apuestaPlayer/2	
+
+									print("\nCuentas con: ", dinero)
+
+									op = input("\nQuires seguir jugando?  y  /  n\n")
+
+									if op == "y":
+
+										break
+
+									else:
+										
+										sys.exit(0)
+
+								elif casaSuma < sumaA and casaSuma ==sumaB:
+
+									print("Empate\n")
+
+									dinero = dinero + apuestaPlayer/2	
+
+									print("\nCuentas con: ", dinero)
+
+									op = input("\nQuires seguir jugando?  y  /  n\n")
+
+									if op == "y":
+
+										break
+
+									else:
+										
+										sys.exit(0)
+
+								elif casaSuma == sumaA and casaSuma > sumaB:
+
+									print("Empate\n")
+
+									dinero = dinero - apuestaPlayer/2	
+
+									print("\nCuentas con: ", dinero)
+
+									op = input("\nQuires seguir jugando?  y  /  n\n")
+
+									if op == "y":
+
+										break
+
+									else:
+										
+										sys.exit(0)
+
+								elif casaSuma == sumaA and casaSuma < sumaB:
+
+									print("Empate\n")
+
+									dinero = dinero + apuestaPlayer/2	
+
+									print("\nCuentas con: ", dinero)
+
+									op = input("\nQuires seguir jugando?  y  /  n\n")
+
+									if op == "y":
+
+										break
+
+									else:
+										
+										sys.exit(0)
 
 								else: 
 
